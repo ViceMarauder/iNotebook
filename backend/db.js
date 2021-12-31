@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MongoURL = 'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false';
+const MongoURL = 'mongodb://localhost:27017/inotebookDB';
 
 const connectToMongo = ()=>{
     mongoose.connect(MongoURL, ()=>{
