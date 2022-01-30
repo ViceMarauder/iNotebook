@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -12,15 +13,17 @@ import NoteState from './Context/notes/NotesState';
 function App() {
   return (
     <>
-    <NoteState>
-      <BrowserRouter>
-        <Navbar></Navbar>
-        <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/about" element={<About/>}/>
-        </Routes>
-      </BrowserRouter>
-    </NoteState>
+      <NoteState>
+        <BrowserRouter>
+          <Navbar></Navbar>
+          <div className="container">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/about" element={<About />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </NoteState>
     </>
   );
 }
