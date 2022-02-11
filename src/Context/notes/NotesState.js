@@ -18,7 +18,6 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json()
-    console.log(json)
     setnotes(json)
   }
   //Add a Note
@@ -33,19 +32,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
     });
-    const json = await response.json()
-    console.log(json)
+    const note = await response.json()
     //Logic to Add in client
-    console.log("Adding a new note");
-    const note = {
-      "_id": "61f6a27279471ec8af8a1a3733",
-      "user": "61e2db36670adafcea168b90",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2022-01-30T14:36:34.290Z",
-      "__v": 0
-    };
     setnotes(notes.concat(note))
   }
   //Delete a note
@@ -59,10 +47,9 @@ const NoteState = (props) => {
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFlMmRiMzY2NzBhZGFmY2VhMTY4YjkwIn0sImlhdCI6MTY0NDUwNDUwM30.-9S2pXQGVioAnZgVlK7ub0HG6LXusmU9NTaAr_NsrVU'
       },
     });
+    // eslint-disable-next-line
     const json = await response.json()
-    console.log(json)
     //Removing note from frontend
-    console.log("Deleting the note with id " + id);
     const newnotes = notes.filter((note) => { return note._id !== id })
     setnotes(newnotes)
   }
@@ -78,8 +65,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
     });
+    // eslint-disable-next-line
     const json = await response.json()
-    console.log(json)
 
     let newNotes = JSON.parse(JSON.stringify(notes))
     //Logic to Edit in client
