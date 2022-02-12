@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import noteContext from '../Context/notes/noteContext';
 import AddNote from './AddNote';
 import Noteitem from './Noteitem';
@@ -6,9 +7,15 @@ import Noteitem from './Noteitem';
 const Notes = (props) => {
     const context = useContext(noteContext);
     const { notes, getnotes, editnote } = context;
+    const navigate = useNavigate()
 
     useEffect(() => {
-        getnotes();
+        if (localStorage.getItem('token')) {
+            getnotes();
+        }
+        else {
+            navigate("/login")
+        }
         // eslint-disable-next-line
     }, [])
 
@@ -24,7 +31,7 @@ const Notes = (props) => {
     const handleClick = (e) => {
         refClose.current.click()
         editnote(note.id, note.etitle, note.edescription, note.etag);
-        props.showAlert("Updated successfully","success")
+        props.showAlert("Updated successfully", "success")
     }
 
     const onChange = (e) => {
@@ -32,7 +39,7 @@ const Notes = (props) => {
     }
 
     return <>
-        <AddNote showAlert={props.showAlert}/>
+        <AddNote showAlert={props.showAlert} />
 
         <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Launch demo modal
@@ -63,7 +70,7 @@ const Notes = (props) => {
                     </div>
                     <div className="modal-footer">
                         <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button disabled={note.etitle.length<5 || note.edescription.length<5} type="button" onClick={handleClick} className="btn btn-primary">Update Note</button>
+                        <button disabled={note.etitle.length < 5 || note.edescription.length < 5} type="button" onClick={handleClick} className="btn btn-primary">Update Note</button>
                     </div>
                 </div>
             </div>

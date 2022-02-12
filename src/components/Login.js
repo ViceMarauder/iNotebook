@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
 
     const [credentials, setcredentials] = useState({ email: "", password: "" })
     const navigate = useNavigate();
@@ -33,7 +33,8 @@ const Login = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container mt-2">
+            <h2 className="mb-2">Login to continue to iNotebook</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
